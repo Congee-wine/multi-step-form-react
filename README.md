@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Multi-Step Form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于 React + TypeScript 构建的多步骤表单应用，支持主题切换与多语言。
 
-Currently, two official plugins are available:
+## 功能特性
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 四步骤表单流程：个人信息 → 选择套餐 → 附加服务 → 摘要确认
+- 5 套主题切换（浅蓝、日落、森林、薰衣草、暗夜），基于 Tailwind CSS v4 CSS 变量实现
+- 三语言支持（简体中文、繁體中文、English），基于 i18next
+- 表单状态持久化（localStorage）
+- MobX 全局状态管理
 
-## React Compiler
+## 技术栈
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| 技术 | 版本 |
+|------|------|
+| React | 19 |
+| TypeScript | 5.9 |
+| Tailwind CSS | 4.2 |
+| MobX | 6 |
+| i18next | 25 |
+| React Router | 7 |
+| Vite | 8 |
 
-## Expanding the ESLint configuration
+## 快速开始
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 安装依赖
+pnpm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 启动开发服务器
+pnpm dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 构建生产版本
+pnpm build
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 预览构建结果
+pnpm preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 项目结构
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+src/
+├── assets/data/        # 静态数据（套餐、附加服务等）
+├── components/         # 公共组件（ThemeSwitcher、LanguageSwitcher）
+├── hooks/              # 自定义 hooks
+├── i18n/               # 国际化翻译文件（en / zh-CN / zh-TW）
+├── layout/             # 页面布局
+├── pages/steps/        # 各步骤页面组件
+├── stores/             # MobX Store（form、theme）
+├── types/              # TypeScript 类型定义
+└── index.css           # 全局样式 & 主题变量
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 主题系统
+
+主题基于 Tailwind CSS v4 的 `@theme` CSS 变量实现，切换主题时只需在 `<html>` 上切换 class：
+
+| Class | 主题 |
+|-------|------|
+| 默认（无 class） | 浅蓝渐变 |
+| `.theme-sunset` | 日落橙粉 |
+| `.theme-forest` | 森林翠绿 |
+| `.theme-purple` | 薰衣草紫 |
+| `.dark` | 暗夜深色 |
+
+在组件中使用主题变量：
+
+```tsx
+<div className="bg-[var(--color-surface)] text-[var(--color-text-base)]">
+  <button className="bg-[var(--color-primary)]">确认</button>
+</div>
 ```
