@@ -1,0 +1,157 @@
+@import url('https://fontsapi.zeoseven.com/292/main/result.css');
+@import 'tailwindcss';
+
+/* ============================================
+   默认主题变量（浅蓝色渐变 - light-sky）
+   使用 Tailwind v4 的 @theme 定义设计 token
+   ============================================ */
+@theme {
+  /* 主背景渐变色 */
+  --color-bg-from: var(--color-sky-100);
+  --color-bg-via: var(--color-blue-50);
+  --color-bg-to: var(--color-indigo-100);
+
+  /* 主色调（按钮、强调色） */
+  --color-primary: var(--color-blue-500);
+  --color-primary-hover: var(--color-blue-600);
+  --color-primary-foreground: var(--color-white);
+
+  /* 卡片/面板背景 */
+  --color-surface: oklch(100% 0 0 / 70%);
+  --color-surface-border: var(--color-blue-200);
+
+  /* 文字颜色 */
+  --color-text-base: var(--color-slate-800);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-heading: var(--color-blue-900);
+
+  /* 侧边栏 */
+  --color-sidebar-from: var(--color-blue-500);
+  --color-sidebar-to: var(--color-indigo-600);
+  --color-sidebar-text: var(--color-white);
+}
+
+/* ============================================
+   主题 2：日落橙（Sunset）
+   ============================================ */
+.theme-sunset {
+  --color-bg-from: var(--color-orange-100);
+  --color-bg-via: var(--color-rose-50);
+  --color-bg-to: var(--color-pink-100);
+
+  --color-primary: var(--color-orange-500);
+  --color-primary-hover: var(--color-orange-600);
+  --color-primary-foreground: var(--color-white);
+
+  --color-surface: oklch(100% 0 0 / 70%);
+  --color-surface-border: var(--color-orange-200);
+
+  --color-text-base: var(--color-stone-800);
+  --color-text-muted: var(--color-stone-500);
+  --color-text-heading: var(--color-orange-900);
+
+  --color-sidebar-from: var(--color-orange-400);
+  --color-sidebar-to: var(--color-rose-500);
+  --color-sidebar-text: var(--color-white);
+}
+
+/* ============================================
+   主题 3：森林绿（Forest）
+   ============================================ */
+.theme-forest {
+  --color-bg-from: var(--color-emerald-100);
+  --color-bg-via: var(--color-teal-50);
+  --color-bg-to: var(--color-green-100);
+
+  --color-primary: var(--color-emerald-600);
+  --color-primary-hover: var(--color-emerald-700);
+  --color-primary-foreground: var(--color-white);
+
+  --color-surface: oklch(100% 0 0 / 70%);
+  --color-surface-border: var(--color-emerald-200);
+
+  --color-text-base: var(--color-stone-800);
+  --color-text-muted: var(--color-stone-500);
+  --color-text-heading: var(--color-emerald-900);
+
+  --color-sidebar-from: var(--color-emerald-500);
+  --color-sidebar-to: var(--color-teal-600);
+  --color-sidebar-text: var(--color-white);
+}
+
+/* ============================================
+   主题 4：薰衣草紫（Purple）
+   ============================================ */
+.theme-purple {
+  --color-bg-from: var(--color-purple-100);
+  --color-bg-via: var(--color-violet-50);
+  --color-bg-to: var(--color-fuchsia-100);
+
+  --color-primary: var(--color-purple-600);
+  --color-primary-hover: var(--color-purple-700);
+  --color-primary-foreground: var(--color-white);
+
+  --color-surface: oklch(100% 0 0 / 70%);
+  --color-surface-border: var(--color-purple-200);
+
+  --color-text-base: var(--color-slate-800);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-heading: var(--color-purple-900);
+
+  --color-sidebar-from: var(--color-purple-500);
+  --color-sidebar-to: var(--color-fuchsia-600);
+  --color-sidebar-text: var(--color-white);
+}
+
+/* ============================================
+   主题 5：暗夜（Dark）
+   ============================================ */
+.dark {
+  --color-bg-from: var(--color-slate-900);
+  --color-bg-via: var(--color-slate-800);
+  --color-bg-to: var(--color-gray-900);
+
+  --color-primary: var(--color-slate-900);
+  --color-primary-hover: var(--color-slate-800);
+  --color-primary-foreground: var(--color-white);
+
+  --color-surface: oklch(20% 0.01 250 / 80%);
+  --color-surface-border: var(--color-slate-600);
+
+  --color-text-base: var(--color-slate-100);
+  --color-text-muted: var(--color-slate-400);
+  --color-text-heading: var(--color-white);
+
+  --color-sidebar-from: var(--color-slate-800);
+  --color-sidebar-to: var(--color-slate-900);
+  --color-sidebar-text: var(--color-slate-100);
+}
+
+/* ============================================
+   全局基础样式 & 动画
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+body {
+  font-family: 'LXGW WenKai';
+  font-weight: normal;
+  height: 100%;
+  color: var(--color-text-base);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
